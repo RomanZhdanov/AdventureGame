@@ -6,6 +6,7 @@ export var ACCELERATION = 500
 export var MAX_SPEED = 80
 export var ROLL_SPEED = 120
 export var FRICTION = 500
+export(float) var STAMINA_RATE = 0.5
 
 enum {
 	MOVE,
@@ -17,6 +18,7 @@ var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
 var stats = PlayerStats
+var stamina_timeout = 0
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
@@ -63,6 +65,12 @@ func move_state(delta):
 	
 	move()
 	
+	stamina_timeout += delta
+	
+	if stamina_timeout >= STAMINA_RATE:
+		stats.stamina += 1
+		stamina_timeout = 0
+	
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
 		
@@ -70,22 +78,30 @@ func move_state(delta):
 		state = ROLL
 
 func attack_state():
-	velocity = Vector2.ZERO
-	animationState.travel("Attack")
+	if stats.stamina > 0:
+		velocity = Vector2.ZERO
+		animationState.travel("Attack")
+	else:
+		state = MOVE
 
 func roll_state():
-	velocity = roll_vector * ROLL_SPEED
-	animationState.travel("Roll")
-	move()
+	if stats.stamina > 0:
+		velocity = roll_vector * ROLL_SPEED
+		animationState.travel("Roll")
+		move()
+	else:
+		state = MOVE
 
 func move():
 	velocity = move_and_slide(velocity)
 
 func attack_animation_finished():
+	stats.stamina -= 1
 	state = MOVE
 
 func roll_animation_finished():
 	velocity = velocity * 0.8
+	stats.stamina -= 1
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
