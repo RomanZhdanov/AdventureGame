@@ -6,7 +6,7 @@ export var ACCELERATION = 500
 export var MAX_SPEED = 80
 export var ROLL_SPEED = 120
 export var FRICTION = 500
-export(float) var STAMINA_RATE = 0.5
+export(float) var STAMINA_RATE = 1
 
 enum {
 	MOVE,
@@ -20,6 +20,8 @@ var roll_vector = Vector2.DOWN
 var stats = PlayerStats
 var stamina_timeout = 0
 
+signal died
+
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -29,7 +31,8 @@ onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
 	randomize()
-	stats.connect("no_health", self, "queue_free")
+	stats.set_health(stats.max_health)
+	stats.connect("no_health", self, "death")
 	animationTree.active = true
 	swordHitbox.knockback_vector = roll_vector
 
@@ -117,3 +120,8 @@ func _on_Hurtbox_invincibility_started():
 
 func _on_Hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
+
+
+func death():
+	queue_free()
+	emit_signal("died")
