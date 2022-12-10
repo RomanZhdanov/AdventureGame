@@ -108,7 +108,7 @@ func roll_animation_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
-	if hurtbox.invincible == false:
+	if (state != ROLL && hurtbox.invincible == false):
 		stats.health -= area.damage
 		hurtbox.start_invincibility(1.0)
 		hurtbox.create_hit_effect();
