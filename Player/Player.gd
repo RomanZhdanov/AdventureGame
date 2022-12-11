@@ -40,45 +40,50 @@ func _physics_process(delta):
 	match state:
 		MOVE:
 			move_state(delta)
-		
 		ROLL:
 			roll_state()
-		
 		ATTACK:
 			attack_state()
-	
+
 func move_state(delta):
+	set_player_vector(delta)
+	move()
+	update_player_stamina(delta)
+
+	if Input.is_action_just_pressed("attack"):
+		state = ATTACK
+	if Input.is_action_just_pressed("roll"):
+		state = ROLL
+
+func set_player_vector(delta):
+	var vector = get_input_vector()
+	
+	if vector != Vector2.ZERO:
+		roll_vector = vector
+		swordHitbox.knockback_vector = vector
+		animationTree.set("parameters/Idle/blend_position", vector)
+		animationTree.set("parameters/Run/blend_position", vector)
+		animationTree.set("parameters/Attack/blend_position", vector)
+		animationTree.set("parameters/Roll/blend_position", vector)
+		animationState.travel("Run")
+		velocity = velocity.move_toward(vector * MAX_SPEED, ACCELERATION * delta)
+	else:
+		animationState.travel("Idle")
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+
+func get_input_vector():
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
-	
-	if input_vector != Vector2.ZERO:
-		roll_vector = input_vector
-		swordHitbox.knockback_vector = input_vector
-		animationTree.set("parameters/Idle/blend_position", input_vector)
-		animationTree.set("parameters/Run/blend_position", input_vector)
-		animationTree.set("parameters/Attack/blend_position", input_vector)
-		animationTree.set("parameters/Roll/blend_position", input_vector)
-		animationState.travel("Run")
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
-	else:
-		animationState.travel("Idle")
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	
-	move()
-	
+	return input_vector
+
+func update_player_stamina(delta):
 	stamina_timeout += delta
 	
 	if stamina_timeout >= STAMINA_RATE:
 		stats.stamina += 1
 		stamina_timeout = 0
-	
-	if Input.is_action_just_pressed("attack"):
-		state = ATTACK
-		
-	if Input.is_action_just_pressed("roll"):
-		state = ROLL
 
 func attack_state():
 	if stats.stamina > 0:
