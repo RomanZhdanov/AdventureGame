@@ -15,5 +15,13 @@ func create_berry():
 
 func _on_Hurtbox_area_entered(_area):
 	create_grass_effect()
-	create_berry()
+	if has_berry():
+		create_berry()
 	queue_free()
+
+func has_berry():
+	var probability : int = 10 # 1/10 chance
+	if (randi() % probability) == (probability - 1):
+		return true
+	else:
+		return false
