@@ -7,6 +7,7 @@ export var MAX_SPEED = 80
 export var ROLL_SPEED = 120
 export var FRICTION = 500
 export(float) var STAMINA_RATE = 1
+export(float) var INVINSIBILITY_DURATION = 1.0
 
 enum {
 	MOVE,
@@ -114,11 +115,17 @@ func roll_animation_finished():
 
 func _on_Hurtbox_area_entered(area):
 	if (state != ROLL && hurtbox.invincible == false):
-		stats.health -= area.damage
-		hurtbox.start_invincibility(1.0)
-		hurtbox.create_hit_effect();
-		var plyerHurtSound = PlayerHurtSound.instance()
-		get_tree().current_scene.add_child(plyerHurtSound)
+		get_hurt(area.damage)
+
+func get_hurt(damage):
+	stats.health -= damage
+	hurtbox.start_invincibility(INVINSIBILITY_DURATION)
+	hurtbox.create_hit_effect();
+	play_hurt_sound()
+
+func play_hurt_sound():	
+	var plyerHurtSound = PlayerHurtSound.instance()
+	get_tree().current_scene.add_child(plyerHurtSound)
 
 func _on_Hurtbox_invincibility_started():
 	blinkAnimationPlayer.play("Start")
