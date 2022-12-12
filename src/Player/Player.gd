@@ -6,7 +6,7 @@ export var ACCELERATION = 500
 export var MAX_SPEED = 80
 export var ROLL_SPEED = 120
 export var FRICTION = 500
-export(float) var STAMINA_RATE = 1
+export(float) var STAMINA_RATE = 1.0
 export(float) var INVINSIBILITY_DURATION = 1.0
 
 enum {
