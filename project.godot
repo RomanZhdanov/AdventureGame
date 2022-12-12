@@ -15,12 +15,12 @@ _global_script_class_icons={
 [application]
 
 config/name="AdventureGame"
-run/main_scene="res://Screens/StartMenu.tscn"
+run/main_scene="res://src/Screens/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-PlayerStats="*res://Player/PlayerStats.tscn"
+PlayerStats="*res://src/Player/PlayerStats.tscn"
 
 [display]
 

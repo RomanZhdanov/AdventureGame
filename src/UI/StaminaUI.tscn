@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/art/ui/StaminaUIFull.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/ui/StaminaUIBorder.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/ui/StaminaUIEmpty.png" type="Texture" id=3]
+[ext_resource path="res://src/UI/StaminaUI.gd" type="Script" id=4]
+
+
+[node name="StaminaUI" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaminaBar" type="TextureProgress" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+value = 50.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 0.207843, 0.207843, 0.894118, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
