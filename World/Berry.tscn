@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://World/Berry.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/objects/Berry.png" type="Texture" id=1]
 [ext_resource path="res://Overlap/PickupBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Berry.gd" type="Script" id=3]
-[ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/shadows/SmallShadow.png" type="Texture" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 4 )
