@@ -1,8 +1,7 @@
-extends Control
+extends MenuControl
 
 func _on_TryAgainButton_pressed():
-	get_tree().change_scene("res://src/Main/Game.tscn")
-
+	load_main_game_scene()
 
 func _on_ExitButton_pressed():
-	get_tree().change_scene("res://src/Screens/StartMenu.tscn")
+	load_start_menu_scene()
