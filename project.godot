@@ -107,6 +107,10 @@ roll={
 2d_physics/layer_6="SoftCollisions"
 2d_physics/layer_7="Pickups"
 
+[mono]
+
+project/assembly_name="AdventureGame"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
