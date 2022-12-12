@@ -9,9 +9,9 @@
 [ext_resource path="res://src/Enemies/Bat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/HealthUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/World/Tree.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/Camera2D.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Main/Camera2D.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/UI/StaminaUI.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/World.gd" type="Script" id=12]
+[ext_resource path="res://src/Main/World.gd" type="Script" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
