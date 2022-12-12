@@ -1,4 +1,4 @@
-extends Node
+extends Object
 
 export(int) var max_health = 1 setget set_max_health
 export(int) var max_stamina = 1 setget set_max_stamina
