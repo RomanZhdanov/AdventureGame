@@ -14,7 +14,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ActionRPGTutorial"
+config/name="AdventureGame"
 run/main_scene="res://Screens/StartMenu.tscn"
 config/icon="res://icon.png"
 
