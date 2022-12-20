@@ -1,17 +1,18 @@
 [gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://src/Main/Camera2D.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/World/Bush.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/World/Tree.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Environment/Bush.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Environment/Tree.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Enemies/Bat.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/World/Grass.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Environment/Grass.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/StaminaUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/HealthUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=9]
 [ext_resource path="res://assets/art/tilesets/DirtTileset.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/tilesets/GrassBackground.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/tilesets/CliffTileset.png" type="Texture" id=12]
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
