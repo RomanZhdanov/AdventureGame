@@ -1,6 +1,6 @@
 extends Node2D
 
-const BerryPickupSound = preload("res://src/Pickups/BerryPickupSound.tscn")
+const BerryPickupSound = preload("res://src/Environment/BerryPickupSound.tscn")
 
 var playerStats = PlayerStats
 
