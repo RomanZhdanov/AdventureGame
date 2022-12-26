@@ -29,6 +29,7 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
 onready var blinkAnimationPlayer = $BlinkAnimationPlayer
+onready var interactionManager: InteractionManager = $InteractionManager
 
 func _ready():
 	randomize()
@@ -55,6 +56,10 @@ func move_state(delta):
 		state = ATTACK
 	if Input.is_action_just_pressed("roll"):
 		state = ROLL
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("use"):
+		interactionManager.initiate_interaction()
 
 func set_player_vector(delta):
 	var vector = get_input_vector()

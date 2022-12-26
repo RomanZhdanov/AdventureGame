@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "InteractionManager",
+"language": "GDScript",
+"path": "res://src/Overlap/InteractionManager.gd"
+}, {
 "base": "Control",
 "class": "MenuControl",
 "language": "GDScript",
 "path": "res://src/Screens/MenuControl.gd"
 } ]
 _global_script_class_icons={
+"InteractionManager": "",
 "MenuControl": ""
 }
 
@@ -118,7 +124,7 @@ use={
 2d_physics/layer_5="Enemy"
 2d_physics/layer_6="SoftCollisions"
 2d_physics/layer_7="Pickups"
-2d_physics/layer_8="InteractiveObjects"
+2d_physics/layer_8="Interaction"
 
 [mono]
 
