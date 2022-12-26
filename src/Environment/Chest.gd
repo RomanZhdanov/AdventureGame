@@ -1,6 +1,13 @@
 extends StaticBody2D
 
+var closed = true
 
+onready var animationPlayer = $AnimationPlayer
 
 func _on_InteractionManager_interacted():
-	print("Opening the chest from Chest.gd")
+	if closed:
+		closed = false
+		animationPlayer.play("chest_open")
+	else:
+		closed = true
+		animationPlayer.play_backwards("chest_open")
