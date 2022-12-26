@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/art/environment/Chests.png" type="Texture" id=1]
 [ext_resource path="res://src/Overlap/InteractionManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/art/shadows/LargeShadow.png" type="Texture" id=3]
-[ext_resource path="res://src/Environment/ChestInteractionManager.gd" type="Script" id=4]
+[ext_resource path="res://src/Environment/Chest.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 13.5 )
@@ -11,7 +11,38 @@ extents = Vector2( 10, 13.5 )
 [sub_resource type="CapsuleShape2D" id=2]
 height = 12.0
 
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "chest_open"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
 [node name="Chest" type="StaticBody2D"]
+script = ExtResource( 4 )
 
 [node name="ShadowSprite" type="Sprite" parent="."]
 position = Vector2( 0, 6 )
@@ -23,6 +54,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -10 )
 hframes = 5
 vframes = 8
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -31,11 +63,15 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="InteractionManager" parent="." instance=ExtResource( 2 )]
-visible = false
-script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="InteractionManager" index="0"]
 position = Vector2( -2, 4 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/chest_open = SubResource( 4 )
+
+[connection signal="interacted" from="InteractionManager" to="." method="_on_InteractionManager_interacted"]
 
 [editable path="InteractionManager"]
