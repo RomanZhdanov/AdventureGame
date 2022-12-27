@@ -147,6 +147,14 @@ stream = ExtResource( 6 )
 
 [node name="InteractiveGlow" type="Tween" parent="."]
 
+[node name="HelpText" type="Label" parent="."]
+visible = false
+margin_left = -48.0
+margin_top = -33.0
+margin_right = 51.0
+margin_bottom = -19.0
+text = "Press E to open"
+
 [connection signal="interacted" from="InteractionManager" to="." method="_on_InteractionManager_interacted"]
 [connection signal="interaction_object_entered" from="InteractionManager" to="." method="_on_InteractionManager_interaction_object_entered"]
 [connection signal="interaction_object_exited" from="InteractionManager" to="." method="_on_InteractionManager_interaction_object_exited"]
