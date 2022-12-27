@@ -11,3 +11,11 @@ func _on_InteractionManager_interacted():
 	else:
 		closed = true
 		animationPlayer.play("chest_close")
+
+
+func _on_InteractionManager_interaction_object_entered():
+	print("Hello! Now we can interact!")
+
+
+func _on_InteractionManager_interaction_object_exited():
+	print("Well bye! See you next time!")
