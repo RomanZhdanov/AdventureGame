@@ -145,8 +145,11 @@ stream = ExtResource( 5 )
 [node name="ChestClosingSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
 
+[node name="InteractiveGlow" type="Tween" parent="."]
+
 [connection signal="interacted" from="InteractionManager" to="." method="_on_InteractionManager_interacted"]
 [connection signal="interaction_object_entered" from="InteractionManager" to="." method="_on_InteractionManager_interaction_object_entered"]
 [connection signal="interaction_object_exited" from="InteractionManager" to="." method="_on_InteractionManager_interaction_object_exited"]
+[connection signal="tween_all_completed" from="InteractiveGlow" to="." method="_on_InteractiveGlow_tween_all_completed"]
 
 [editable path="InteractionManager"]
