@@ -9,7 +9,7 @@ var closed = true
 onready var animationPlayer = $AnimationPlayer
 onready var sprite = $Sprite
 onready var glowEffect = $InteractiveGlow
-onready var helpText = $HelpText
+onready var interactionTip = $InteractionTip
 
 
 func _ready():
@@ -25,12 +25,12 @@ func _on_InteractionManager_interacted():
 
 
 func _on_InteractionManager_interaction_object_entered():
-	helpText.visible = true
+	interactionTip.visible = true
 	glowEffect.start()
 
 
 func _on_InteractionManager_interaction_object_exited():
-	helpText.visible = false
+	interactionTip.visible = false
 	sprite.modulate = WHITE
 	glowEffect.stop_all()
 
