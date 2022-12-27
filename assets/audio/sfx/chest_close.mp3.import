@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chest_close.mp3-e70dd97b3c9bd66fd312eb9adaa8df01.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/chest_close.mp3"
+dest_files=[ "res://.import/chest_close.mp3-e70dd97b3c9bd66fd312eb9adaa8df01.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

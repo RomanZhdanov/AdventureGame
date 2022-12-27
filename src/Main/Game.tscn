@@ -753,6 +753,9 @@ rotation = -0.0628122
 [node name="TemplateChest" parent="YSort/Chests" instance=ExtResource( 13 )]
 position = Vector2( -91, 222 )
 
+[node name="TemplateChest2" parent="YSort/Chests" instance=ExtResource( 13 )]
+position = Vector2( 256, -62 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 8 )]

@@ -10,4 +10,4 @@ func _on_InteractionManager_interacted():
 		animationPlayer.play("chest_open")
 	else:
 		closed = true
-		animationPlayer.play_backwards("chest_open")
+		animationPlayer.play("chest_close")
