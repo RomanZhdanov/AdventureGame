@@ -4,7 +4,7 @@ const GLOW = Color(1.4,1.4,1.4)
 const WHITE = Color(1,1,1)
 const GLOW_DURATOIN = .7
 
-var closed = true
+var lid_is_closed = true
 
 onready var animationPlayer = $AnimationPlayer
 onready var sprite = $Sprite
@@ -16,21 +16,21 @@ func _ready():
 	set_glow_effect_up()
 
 func _on_InteractionManager_interacted():
-	if closed:
-		closed = false
+	if lid_is_closed:
+		lid_is_closed = false
 		animationPlayer.play("chest_open")
 	else:
-		closed = true
+		lid_is_closed = true
 		animationPlayer.play("chest_close")
 
 
 func _on_InteractionManager_interaction_object_entered():
-	interactionTip.visible = true
+	show_interaction_tip(true)
 	glowEffect.start()
 
 
 func _on_InteractionManager_interaction_object_exited():
-	interactionTip.visible = false
+	show_interaction_tip(false)
 	sprite.modulate = WHITE
 	glowEffect.stop_all()
 
@@ -63,3 +63,19 @@ func set_glow_effect_down():
 	GLOW_DURATOIN, 
 	Tween.TRANS_SINE, 
 	Tween.EASE_IN_OUT)
+
+
+func show_interaction_tip(show: bool):
+	set_interaction_tip_text()
+	interactionTip.visible = show
+
+func set_interaction_tip_text():
+	var tip = interactionTip.get_node("TipText")
+	if lid_is_closed:
+		tip.text = "Open"
+	else:
+		tip.text = "Close"
+
+
+func _on_AnimationPlayer_animation_finished(_anim_name):
+	set_interaction_tip_text()
