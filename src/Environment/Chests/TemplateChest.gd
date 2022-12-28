@@ -13,6 +13,7 @@ onready var interactionTip = $InteractionTip
 
 
 func _ready():
+	show_interaction_tip(false)
 	set_glow_effect_up()
 
 func _on_InteractionManager_interacted():
